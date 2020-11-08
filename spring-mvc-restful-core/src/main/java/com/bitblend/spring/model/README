@@ -1,0 +1,19 @@
+-------------------------
+com.bitblend.spring.model
+-------------------------
+
+Es este paquete se tienen que poner todos los objetos persistentes "@Entity"
+
+Este es el unico paquete que esta escaneado al armar la sesion de hibernate:
+- Class AppConfig 
+- factoryBean.setPackagesToScan("com.bitblend.spring.model");
+
+En todo caso, se debe agregar otro paquete, el metodo recive una lista de string
+	/**
+	 * Specify packages to search for autodetection of your entity classes in the
+	 * classpath. This is analogous to Spring's component-scan feature
+	 * ({@link org.springframework.context.annotation.ClassPathBeanDefinitionScanner}).
+	 */
+	public void setPackagesToScan(String... packagesToScan) {
+		this.packagesToScan = packagesToScan;
+	}
