@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 import com.bitblend.spring.model.Patient;
 
 @Repository
-public class PatientDaoImp implements PatientDao {
+public class PatientDaoImplementation implements DaoInterface<Patient> {
 
    @Autowired
    private SessionFactory sessionFactory;

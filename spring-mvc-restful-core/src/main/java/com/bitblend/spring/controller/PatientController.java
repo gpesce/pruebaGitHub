@@ -15,9 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bitblend.spring.model.MedicalRecord;
 import com.bitblend.spring.model.Patient;
-import com.bitblend.spring.service.PatientService;
+import com.bitblend.spring.service.ServiceInterface;
 import com.bitblend.spring.translator.BitBlendTranslator;
 import com.bitblend.spring.wrapper.PatientWrapper;
 import com.google.gson.Gson;
@@ -27,28 +26,11 @@ import com.google.gson.Gson;
 public class PatientController {
 
 	@Autowired
-	private PatientService patientService;
+	private ServiceInterface<Patient> patientService;
 
 	/*---Add new patient---*/
 	@PostMapping("/patientWithMedicalRecords")
    public ResponseEntity<?> save(@RequestBody Patient patient) {
-	   Timestamp currentTimeMillis = new Timestamp(System.currentTimeMillis());
-	   patient.setCreationTimestamp(currentTimeMillis);
-	   patient.setModificationTimestamp(currentTimeMillis);
-	   patient.setCreationIPAddress("dummy IP");
-	   patient.setModificationIPAddress("dummy IP");
-	   patient.setCreationUserId("dummy User");
-	   patient.setModificationUserId("dummy User");
-	   for (MedicalRecord medicalRecord : patient.getMedicalRecords()) {
-		   medicalRecord.setCreationTimestamp(currentTimeMillis);
-		   medicalRecord.setModificationTimestamp(currentTimeMillis);
-		   medicalRecord.setCreationIPAddress("dummy IP");
-		   medicalRecord.setModificationIPAddress("dummy IP");
-		   medicalRecord.setCreationUserId("dummy User");
-		   medicalRecord.setModificationUserId("dummy User");
-		   medicalRecord.setPatient(patient);
-	   }
-	   
 	   long id = patientService.save(patient);
 	   return ResponseEntity.ok().body("New Patient has been saved with ID:" + id);
    }
@@ -56,13 +38,6 @@ public class PatientController {
 	/*---Add new patient---*/
 	@PostMapping("/patient")
 	   public ResponseEntity<?> saveSimple(@RequestBody Patient patient) {
-		   Timestamp currentTimeMillis = new Timestamp(System.currentTimeMillis());
-		   patient.setCreationTimestamp(currentTimeMillis);
-		   patient.setModificationTimestamp(currentTimeMillis);
-		   patient.setCreationIPAddress("dummy IP");
-		   patient.setModificationIPAddress("dummy IP");
-		   patient.setCreationUserId("dummy User");
-		   patient.setModificationUserId("dummy User");
 		   long id = patientService.save(patient);
 		   return ResponseEntity.ok().body("New Patient has been saved with ID:" + id);
 	   }
@@ -103,4 +78,5 @@ public class PatientController {
 		patientService.delete(id);
 		return ResponseEntity.ok().body("Patient has been deleted successfully.");
 	}
+	
 }
