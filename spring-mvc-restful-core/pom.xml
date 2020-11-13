@@ -12,12 +12,14 @@
 	</properties>
 
 	<dependencies>
+	
 		<!-- Spring MVC Dependency -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>4.3.10.RELEASE</version>
 		</dependency>
+		
 		<!-- Spring ORM -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -35,24 +37,35 @@
 <!-- 		    <version>2.2.5.RELEASE</version> -->
 <!-- 			<scope>test</scope> -->
 <!-- 		</dependency> -->
+
+		<!-- https://mvnrepository.com/artifact/javax.interceptor/javax.interceptor-api -->
+		<dependency>
+		    <groupId>javax.interceptor</groupId>
+		    <artifactId>javax.interceptor-api</artifactId>
+		    <version>1.2</version>
+		</dependency>
+
 		<!-- Hibernate ORM -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>5.2.12.Final</version>
 		</dependency>
+		
 		<!-- Hibernate-C3P0 Integration -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-c3p0</artifactId>
 			<version>5.2.12.Final</version>
 		</dependency>
+		
 		<!-- c3p0 -->
 		<dependency>
 			<groupId>com.mchange</groupId>
 			<artifactId>c3p0</artifactId>
 			<version>0.9.5.2</version>
 		</dependency>
+		
 		<!-- Mysql Connector -->
 <!-- 		<dependency> -->
 <!-- 			<groupId>mysql</groupId> -->
@@ -73,6 +86,7 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.8.7</version>
 		</dependency>
+		
 		<!-- Servlet Dependency -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -80,6 +94,7 @@
 			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
 		<!-- Adding CORS filters Dependencies -->
 		<dependency>
@@ -87,6 +102,7 @@
 		    <artifactId>javax.ws.rs-api</artifactId>
 		    <version>2.0.1</version>
 		</dependency>
+		
 		<!--Printing Json responses -->
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<dependency>

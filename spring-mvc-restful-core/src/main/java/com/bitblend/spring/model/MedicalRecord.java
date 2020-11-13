@@ -3,24 +3,29 @@ package com.bitblend.spring.model;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import com.bitblend.ejb.persistance.AbstractPersistentObject;
 
 @Entity(name = "MEDICAL_RECORD")
-public class MedicalRecord extends AbstractPersistentObject{
+public class MedicalRecord extends AbstractPersistentObject {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6464774368544607969L;
 
 	private String title;
-	@ManyToOne 
+	@ManyToOne
 	@JoinColumn(name = "PATIENT_ID")
 	private Patient patient;
 
-	
 	public MedicalRecord() {
 		super();
 	}
-	
+
 	public Patient getPatient() {
 		return patient;
 	}
-	
+
 	public void setPatient(Patient patient) {
 		this.patient = patient;
 	}
@@ -33,5 +38,4 @@ public class MedicalRecord extends AbstractPersistentObject{
 		this.title = title;
 	}
 
-	
 }

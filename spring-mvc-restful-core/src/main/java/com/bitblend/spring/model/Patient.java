@@ -11,8 +11,13 @@ import javax.persistence.OneToMany;
 @Entity
 @DiscriminatorValue("PATIENT")
 public class Patient extends Person{
-	
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1136587018406751600L;
+	
+	
 	@OneToMany(mappedBy = "patient", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<MedicalRecord> medicalRecords;
 

@@ -1,0 +1,12 @@
+----------------------------
+com.bitblend.spring.service
+----------------------------
+
+The service layer is there to provide logic to operate on the data sent to and from the DAO and the client. 
+Very often these 2 pieces will be bundled together into the same module, and occasionally into the same code, 
+but you'll still see them as distinct logical entities.
+Another reason is security - If you provide a service layer that has no relation to the DB, then is it more difficult to 
+gain access to the DB from the client except through the service. 
+If the DB cannot be accessed directly from the client (and there is no trivial DAO module acting as the service) then all 
+an attacker who has taken over the client can do is attempt to hack the service layer as well before he gets all but the 
+most sanitized access to your data.

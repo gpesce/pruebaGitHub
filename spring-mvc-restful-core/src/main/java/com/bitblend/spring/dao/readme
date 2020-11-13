@@ -1,0 +1,8 @@
+-----------------------
+com.bitblend.spring.dao
+-----------------------
+
+Data Access Layer Pattern
+
+Generally the DAO is as light as possible and exists solely to provide a connection to the DB, 
+sometimes abstracted so different DB back-ends can be used.

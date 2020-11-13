@@ -3,8 +3,16 @@ package com.bitblend.spring.model;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
+import com.bitblend.ejb.persistance.AbstractPersistentObject;
+
 @MappedSuperclass
 public abstract class Person extends AbstractPersistentObject{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -223446166626955188L;
+	
 	
 	@Column(name = "NAME", length = 50, nullable = false)
 	private String name;

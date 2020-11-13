@@ -1,6 +1,5 @@
 package com.bitblend.spring.controller;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,8 @@ import com.bitblend.spring.wrapper.PatientWrapper;
 import com.google.gson.Gson;
 
 @RestController
-@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT })
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE,
+		RequestMethod.PUT })
 public class PatientController {
 
 	@Autowired
@@ -30,18 +30,20 @@ public class PatientController {
 
 	/*---Add new patient---*/
 	@PostMapping("/patientWithMedicalRecords")
-   public ResponseEntity<?> save(@RequestBody Patient patient) {
-	   long id = patientService.save(patient);
-	   return ResponseEntity.ok().body("New Patient has been saved with ID:" + id);
-   }
-	
+	public ResponseEntity<?> save(@RequestBody Patient patient) {
+		System.out.println("Salvando Patient wiht medical records");
+		long id = patientService.save(patient);
+		return ResponseEntity.ok().body("New Patient has been saved with ID:" + id);
+	}
+
 	/*---Add new patient---*/
 	@PostMapping("/patient")
-	   public ResponseEntity<?> saveSimple(@RequestBody Patient patient) {
-		   long id = patientService.save(patient);
-		   return ResponseEntity.ok().body("New Patient has been saved with ID:" + id);
-	   }
-	
+	public ResponseEntity<?> saveSimple(@RequestBody Patient patient) {
+		System.out.println("Salvando Patient");
+		long id = patientService.save(patient);
+		return ResponseEntity.ok().body("New Patient has been saved with ID:" + id);
+	}
+
 	/*---Get an patient by id---*/
 	@GetMapping("/patient/{id}")
 	public ResponseEntity<Patient> get(@PathVariable("id") long id) {
@@ -78,5 +80,5 @@ public class PatientController {
 		patientService.delete(id);
 		return ResponseEntity.ok().body("Patient has been deleted successfully.");
 	}
-	
+
 }

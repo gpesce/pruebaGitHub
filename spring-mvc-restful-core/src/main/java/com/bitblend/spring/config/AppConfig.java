@@ -28,7 +28,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
-@ComponentScans(value = { @ComponentScan("com.bitblend.spring.dao"), @ComponentScan("com.bitblend.spring.service") })
+@ComponentScans(value = { @ComponentScan("com.bitblend.spring.dao")
+						, @ComponentScan("com.bitblend.spring.service") 
+						})
 public class AppConfig {
 
    @Autowired
@@ -58,7 +60,7 @@ public class AppConfig {
 
       factoryBean.setHibernateProperties(props);
       factoryBean.setPackagesToScan("com.bitblend.spring.model");
-
+      
       return factoryBean;
    }
 
