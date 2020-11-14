@@ -19,15 +19,19 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.bitblend.spring.aspectj.BitBlendAspecJ;
+
 @Configuration
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
+@EnableAspectJAutoProxy
 @ComponentScans(value = { @ComponentScan("com.bitblend.spring.dao")
 						, @ComponentScan("com.bitblend.spring.service") 
 						})
@@ -70,4 +74,10 @@ public class AppConfig {
       transactionManager.setSessionFactory(getSessionFactory().getObject());
       return transactionManager;
    }
+   
+   @Bean
+   public BitBlendAspecJ bitBlendAspecJ(){
+	   return new BitBlendAspecJ();
+   }
+   
 }

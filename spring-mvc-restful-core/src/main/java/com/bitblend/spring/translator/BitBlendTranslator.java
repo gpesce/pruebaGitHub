@@ -10,11 +10,10 @@ import com.bitblend.spring.model.Patient;
 import com.bitblend.spring.wrapper.MedicalRecordWrapper;
 import com.bitblend.spring.wrapper.PatientWrapper;
 
-
 @Scope("singleton")
 public class BitBlendTranslator {
 
-	public static List<PatientWrapper> getPatientWrapper(List<Patient> patients){
+	public static List<PatientWrapper> getPatientWithMedicalRecordsWrapper(List<Patient> patients) {
 		List<PatientWrapper> patientWrapperList = new ArrayList<PatientWrapper>();
 		PatientWrapper pw = null;
 		for (Patient patient : patients) {
@@ -32,9 +31,8 @@ public class BitBlendTranslator {
 		}
 		return patientWrapperList;
 	}
-	
-	
-	public static List<MedicalRecordWrapper> getMedicalRecordWrapper(List<MedicalRecord> MedicalRecords){
+
+	public static List<MedicalRecordWrapper> getMedicalRecordWrapper(List<MedicalRecord> MedicalRecords) {
 		List<MedicalRecordWrapper> medicalRecordWrapperList = new ArrayList<MedicalRecordWrapper>();
 		for (MedicalRecord medicalRecord : MedicalRecords) {
 			MedicalRecordWrapper mdr = new MedicalRecordWrapper();
@@ -44,5 +42,26 @@ public class BitBlendTranslator {
 		}
 		return medicalRecordWrapperList;
 	}
-			
+
+	public static List<PatientWrapper> getPatientWrapperList(List<Patient> patients) {
+		List<PatientWrapper> patientWrapperList = new ArrayList<PatientWrapper>();
+		PatientWrapper pw = null;
+		for (Patient patient : patients) {
+			pw = new PatientWrapper();
+			pw.setId(patient.getId());
+			pw.setName(patient.getName());
+			pw.setGender(patient.getGender());
+			patientWrapperList.add(pw);
+		}
+		return patientWrapperList;
+	}
+
+	public static PatientWrapper getPatientWrapper(Patient patient) {
+		PatientWrapper pw = new PatientWrapper();
+		pw.setId(patient.getId());
+		pw.setName(patient.getName());
+		pw.setGender(patient.getGender());
+		return pw;
+	}
+
 }
