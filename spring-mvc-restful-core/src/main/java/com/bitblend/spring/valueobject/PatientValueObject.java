@@ -1,14 +1,14 @@
-package com.bitblend.spring.wrapper;
+package com.bitblend.spring.valueobject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PatientWrapper {
+public class PatientValueObject {
 
 	private Long id;
 	private String name;
 	private String gender;
-    private List<MedicalRecordWrapper> medicalRecords;
+    private List<MedicalRecordValueObject> medicalRecords;
 	
 	
 	public Long getId() {
@@ -35,18 +35,18 @@ public class PatientWrapper {
 		this.gender = gender;
 	}
 	
-	public List<MedicalRecordWrapper> getMedicalRecords() {
+	public List<MedicalRecordValueObject> getMedicalRecords() {
 		if (medicalRecords == null) {
-			this.medicalRecords = new ArrayList<MedicalRecordWrapper>();
+			this.medicalRecords = new ArrayList<MedicalRecordValueObject>();
 		}
 		return medicalRecords;
 	}
 	
-	public void setMedicalRecords(List<MedicalRecordWrapper> medicalRecordss) {
+	public void setMedicalRecords(List<MedicalRecordValueObject> medicalRecordss) {
 		this.medicalRecords = medicalRecordss;
 	}
 
-	public void addMedicalRecord(MedicalRecordWrapper medicalRecordss) {
+	public void addMedicalRecord(MedicalRecordValueObject medicalRecordss) {
 		this.getMedicalRecords().add(medicalRecordss);
 	}
 }

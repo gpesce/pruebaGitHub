@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bitblend.spring.model.Patient;
 import com.bitblend.spring.service.ServiceInterface;
-import com.bitblend.spring.translator.BitBlendTranslator;
-import com.bitblend.spring.wrapper.PatientWrapper;
+import com.bitblend.spring.translator.PatientControllerTranslator;
+import com.bitblend.spring.valueobject.PatientControllerValueObject;
 
 @RestController
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE, RequestMethod.PUT })
@@ -26,52 +26,46 @@ public class PatientController {
 	@Autowired
 	private ServiceInterface<Patient> patientService;
 
-	/*---Add new patient---*/
-	@PostMapping("/patientWithMedicalRecords")
-   public ResponseEntity<?> save(@RequestBody Patient patient) {
-	   long id = patientService.save(patient);
-	   return ResponseEntity.ok().body("New Patient has been saved with ID:" + id);
-   }
-	
-	/*---Add new patient---*/
+	/*---Add only a new patient---*/
 	@PostMapping("/patient")
-	   public ResponseEntity<?> saveSimple(@RequestBody Patient patient) {
-		   long id = patientService.save(patient);
-		   return ResponseEntity.ok().body("New Patient has been saved with ID:" + id);
-	   }
+	public ResponseEntity<?> save(@RequestBody Patient patient) {
+		long id = patientService.save(patient);
+		return ResponseEntity.ok().body("New Patient has been saved with ID:" + id);
+	}
 	
-	/*---Get an patient by id---*/
-	@GetMapping("/patient/{id}")
-	public ResponseEntity<PatientWrapper> get(@PathVariable("id") long id) {
-		PatientWrapper patient = BitBlendTranslator.getPatientWrapper(patientService.get(id));
-		return ResponseEntity.ok().body(patient);
-	}
-
-	/*---get all patients---*/
-	@GetMapping("/getPatients")
-	public ResponseEntity<List<PatientWrapper>> list2() {
-		List<PatientWrapper> patients = BitBlendTranslator.getPatientWrapperList(patientService.list());
-		return ResponseEntity.ok().body(patients);
-	}
-
-	@GetMapping("/getPatientWithMedicalRecords")
-	public ResponseEntity<List<PatientWrapper>> list() {
-		List<PatientWrapper> patients = BitBlendTranslator.getPatientWithMedicalRecordsWrapper(patientService.list());
-		return ResponseEntity.ok().body(patients);
-	}
-
-	/*---Update an patient by id---*/
+	/*---Update patient by id---*/
 	@PutMapping("/patient/{id}")
 	public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody Patient patient) {
 		patientService.update(id, patient);
 		return ResponseEntity.ok().body("Patient has been updated successfully.");
 	}
 
-	/*---Delete an patient by id---*/
+	/*---Delete patient by id---*/
 	@DeleteMapping("/patient/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") long id) {
 		patientService.delete(id);
 		return ResponseEntity.ok().body("Patient has been deleted successfully.");
 	}
 	
+	/*---Get patient by id---*/
+	@GetMapping("/patient/{id}")
+	public ResponseEntity<PatientControllerValueObject> get(@PathVariable("id") long id) {
+		PatientControllerValueObject patient = PatientControllerTranslator.getPatientControllerValueObject(patientService.get(id));
+		return ResponseEntity.ok().body(patient);
+	}
+
+	/*---get all patients with its medical records---*/
+	@GetMapping("/patient")
+	public ResponseEntity<List<PatientControllerValueObject>> list() {
+		List<PatientControllerValueObject> patients = PatientControllerTranslator.getPatientControllerValueObjectList(patientService.list());
+		return ResponseEntity.ok().body(patients);
+	}
+
+	/*---get all patients, without any medical records---*/
+	@GetMapping("/onlyPatient")
+	public ResponseEntity<List<PatientControllerValueObject>> list2() {
+		List<PatientControllerValueObject> patients = PatientControllerTranslator.getOnlyPatients(patientService.list());
+		return ResponseEntity.ok().body(patients);
+	}
+
 }

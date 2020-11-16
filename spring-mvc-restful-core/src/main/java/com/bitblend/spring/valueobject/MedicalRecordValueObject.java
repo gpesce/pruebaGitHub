@@ -1,6 +1,6 @@
-package com.bitblend.spring.wrapper;
+package com.bitblend.spring.valueobject;
 
-public class MedicalRecordWrapper {
+public class MedicalRecordValueObject {
 	
 		private Long id;
 		private String title;

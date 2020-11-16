@@ -3,7 +3,6 @@ package com.bitblend.spring.model;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import com.bitblend.ejb.persistance.AbstractPersistentObject;
 
 @Entity(name = "MEDICAL_RECORD")
 public class MedicalRecord extends AbstractPersistentObject {

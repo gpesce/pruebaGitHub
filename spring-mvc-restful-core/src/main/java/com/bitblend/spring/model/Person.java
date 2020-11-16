@@ -3,8 +3,6 @@ package com.bitblend.spring.model;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
-import com.bitblend.ejb.persistance.AbstractPersistentObject;
-
 @MappedSuperclass
 public abstract class Person extends AbstractPersistentObject{
 	

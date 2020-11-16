@@ -1,4 +1,4 @@
-package com.bitblend.ejb.persistance;
+package com.bitblend.spring.model;
 
 import java.sql.Timestamp;
 
